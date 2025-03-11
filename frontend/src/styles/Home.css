@@ -1,0 +1,347 @@
+/* 
+
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
+
+body {
+  font-family: 'Chau Philomene One', sans-serif;
+}
+
+.home-container {
+  padding: 20px;
+  animation: fadeIn 1.5s;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: slideIn 1.5s;
+}
+
+.hero-section h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.info-card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  margin: 10px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  animation: fadeIn 1.5s;
+}
+
+.info-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.current-surveys-section,
+.results-section {
+  text-align: center;
+}
+
+.survey-card {
+  display: inline-block;
+  text-align: left;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  animation: fadeIn 1.5s;
+}
+
+.survey-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.chart-examples {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.chart-example {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  margin: 10px;
+  text-align: center;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+@media (max-width: 768px) {
+  .info-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 80%;
+  }
+
+  .chart-examples {
+    flex-direction: column;
+    align-items: center;
+  }
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  /* Palette de couleurs accessibles avec un bon contraste */
+  --primary-dark-blue: #081f53;
+  --primary-light-blue: #667dda;
+  --background-light: #f4f4f9;
+  --text-dark: #1a1a2e;
+  --white: #ffffff;
+  --accent-gold: #bfad28;
+}
+
+/* Réinitialisations et accessibilité de base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Conteneur principal */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Section Héroïque */
+.hero-section {
+  text-align: center;
+  background-color: var(--primary-dark-blue);
+  color: var(--white);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+  font-family: 'Chau Philomene One', sans-serif;
+  font-size: 2.75em;
+  margin-bottom: 1rem;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.hero-section p {
+  font-size: 1.25em;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Section Informative */
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.info-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover,
+.info-card:focus-within {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.info-icon {
+  font-size: 3em;
+  margin-bottom: 1rem;
+  color: var(--primary-dark-blue);
+  transition: color 0.3s ease;
+}
+
+.info-card:hover .info-icon,
+.info-card:focus-within .info-icon {
+  color: var(--primary-light-blue);
+}
+
+.info-card h3 {
+  margin-bottom: 0.75rem;
+  color: var(--primary-dark-blue);
+  font-size: 1.25em;
+}
+
+.info-card p {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Section Authentification */
+.auth-cta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Boutons animés avec accessibilité */
+.animated-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--primary-dark-blue);
+  border: 2px solid var(--primary-dark-blue);
+  border-radius: 8px;
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease, 
+    transform 0.2s ease;
+  cursor: pointer;
+}
+
+.animated-button:hover,
+.animated-button:focus-visible {
+  background-color: var(--primary-light-blue);
+  border-color: var(--primary-light-blue);
+  transform: translateY(-3px);
+}
+
+.animated-button:focus-visible {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+/* Section Tâches */
+.current-tasks-section,
+.no-tasks {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.task-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.task-card:hover,
+.task-card:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-card {
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2em;
+  }
+
+  .hero-section p {
+    font-size: 1em;
+  }
+
+  .auth-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .animated-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Accessibilité supplémentaire */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Focus states pour accessibilité */
+*:focus-visible {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 3px;
+}

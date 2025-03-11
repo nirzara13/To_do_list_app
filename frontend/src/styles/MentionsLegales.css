@@ -1,0 +1,23 @@
+/* src/assets/MentionsLegales.css */
+.mentions-legales-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #081f53; /* Bleu foncé */
+    color: #ffffff; /* Blanc */
+    font-family: 'Chau Philomene', sans-serif;
+  }
+  
+  .mentions-legales-container h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #b4b4e8; /* Doré */
+  }
+  
+  .mentions-legales-container p {
+    font-size: 1rem;
+    color: #ffffff; /* Blanc */
+  }
+  

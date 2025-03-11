@@ -1,0 +1,281 @@
+/* Importations de polices */
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&family=Open+Sans:wght@400;600;700&display=swap');
+
+/* Variables de conception */
+:root {
+  --primary-color: #081f53;
+  --secondary-color: #667dda;
+  --accent-color: #bfad28;
+  --text-color: #ffffff;
+  --background-color: #f4f4f9;
+  --transition-speed: 0.3s;
+  --header-height: 90px;
+  --mobile-header-height: 70px;
+}
+
+/* Styles de base pour l'en-tête */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  transition: 
+    background-color var(--transition-speed) ease-in-out,
+    box-shadow var(--transition-speed) ease-in-out;
+}
+
+/* Animation et effet de défilement */
+.header.scrolled {
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  background-color: color-mix(in srgb, var(--primary-color) 90%, white 10%);
+}
+
+/* Logo avec adaptation responsive et animation */
+.header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alignement à gauche */
+  width: auto; /* Ajustement de la largeur */
+  max-height: 100%; /* Hauteur maximale du logo */
+  margin-right: auto; /* Pousse le reste du contenu vers la droite */
+}
+
+.header-logo .logo-image {
+  height: 60px; /* Hauteur fixe pour la stabilité */
+  width: auto; /* Largeur automatique pour maintenir les proportions */
+  max-width: 200px; /* Largeur maximale */
+  object-fit: contain; /* Assure que l'image est bien contenue */
+  transition: 
+    transform var(--transition-speed) ease,
+    filter var(--transition-speed) ease;
+}
+
+/* Effets interactifs améliorés pour le logo */
+.header-logo .logo-image:hover,
+.header-logo .logo-image:focus {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Ajustements responsives pour le logo */
+@media screen and (max-width: 768px) {
+  .header-logo .logo-image {
+    height: 50px; /* Taille réduite pour mobile */
+    max-width: 170px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-logo .logo-image {
+    height: 40px; /* Encore plus petit sur très petits écrans */
+    max-width: 140px;
+  }
+}
+
+/* Navigation */
+.header-nav .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav .nav-item {
+  position: relative;
+}
+
+.header-nav .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-color);
+  font-family: 'Chau Philomene One', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: 
+    background-color var(--transition-speed) ease,
+    transform var(--transition-speed) ease;
+}
+
+.header-nav .nav-link {
+  color: var(--text-color); /* Assure que c'est bien blanc */
+  font-family: 'Chau Philomene One', sans-serif;
+}
+
+.header-nav .nav-link span {
+  color: var(--text-color); /* Texte en blanc */
+}
+
+.header-nav .nav-link svg {
+  color: var(--text-color); /* Icônes en blanc */
+  fill: var(--text-color);
+}
+
+/* Effets interactifs pour les liens de navigation */
+.header-nav .nav-link:hover,
+.header-nav .nav-link:focus {
+  background-color: var(--secondary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Icônes et accessibilité */
+.header-nav .nav-link svg {
+  font-size: 1.3rem;
+  color: white;
+  fill: white;
+  transition: transform var(--transition-speed) ease;
+}
+
+.header-nav .nav-link:hover svg,
+.header-nav .nav-link:focus svg {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Bouton menu mobile */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1100;
+  transition: 
+    transform var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle:focus {
+  transform: scale(1.2) rotate(90deg);
+  color: var(--accent-color);
+}
+
+/* Styles responsives */
+@media screen and (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+  }
+
+  .header {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .header-logo {
+    order: 1;
+    max-width: 40%;
+  }
+  
+  .header-logo .logo-image {
+    max-width: 140px;
+  }
+
+  .header-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left var(--transition-speed) ease-in-out;
+    z-index: 1050;
+  }
+
+  .header-nav.is-active {
+    left: 0;
+    animation: slideIn 0.4s ease-out;
+  }
+
+  @keyframes slideIn {
+    from { 
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    to { 
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .header-nav .nav-list {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .header-nav .nav-link {
+    font-size: 1.4rem;
+    padding: 1.1rem;
+  }
+
+  .header-nav .nav-link svg {
+    font-size: 1.4rem;
+  }
+}
+
+/* Ajustements pour très petits écrans */
+@media screen and (max-width: 480px) {
+  .header-logo {
+    max-width: 50%;
+  }
+  
+  .header-logo .logo-image {
+    min-width: 80px;
+  }
+}
+
+/* Accessibilité : États de focus */
+*:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Réduction du mouvement */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.header-nav .nav-link,
+.header-nav .nav-link span,
+.header-nav .nav-link svg {
+  color: white !important;  /* Force les textes et icônes en blanc */
+  fill: white !important;   /* Assure également la couleur des icônes */
+}
+
+/* Ajustement du contenu principal pour éviter le chevauchement */
+main, 
+.dashboard-container, 
+.login-container, 
+.signup-container,
+.home-container,
+.contact-container,
+.survey-container,
+.profile-container,
+.tasks-container {
+  padding-top: calc(var(--header-height) + 20px);
+}

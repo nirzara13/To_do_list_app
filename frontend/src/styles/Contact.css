@@ -1,0 +1,91 @@
+/* Contact.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
+
+body {
+  font-family: 'Chau Philomene One', sans-serif;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #081f53; /* Bleu foncé */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.5s, slideIn 1s ease-out;
+  color: white; /* Texte en blanc */
+}
+
+.contact-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff; /* Blanc */
+}
+
+.contact-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ffffff; /* Blanc */
+}
+
+.contact-container input,
+.contact-container textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-family: 'Chau Philomene One', sans-serif;
+}
+
+.contact-container textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.animated-button {
+  background: #ffcc00; /* Jaune orange */
+  color: #081f53; /* Bleu foncé */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.animated-button:hover {
+  background: #000000; /* Noir */
+  color: #ffffff; /* Blanc */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 15px;
+  }
+
+  .contact-container input,
+  .contact-container textarea {
+    padding: 8px;
+  }
+
+  .animated-button {
+    padding: 8px;
+  }
+}

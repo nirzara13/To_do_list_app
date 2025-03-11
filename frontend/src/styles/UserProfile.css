@@ -1,0 +1,10 @@
+.user-profile-container {
+  padding: 2rem;
+  background-color: #f4f4f9;
+  color: #081f53; /* Bleu foncé */
+  text-align: center;
+}
+
+.user-profile-container h1 {
+  margin-bottom: 1rem;
+}
