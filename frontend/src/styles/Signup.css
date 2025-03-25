@@ -1,8 +1,32 @@
-/* Signup.css */
+/* Signup.css avec améliorations d'accessibilité */
 
-@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  /* Palette de couleurs accessibles avec un bon contraste */
+  --primary-color: #0056b3;
+  --primary-hover: #004494;
+  --background-light: #f4f4f4;
+  --text-dark: #333333;
+  --form-background: #ffffff;
+  --input-border: #cccccc;
+  --input-focus-border: #0056b3;
+  --error-color: #d32f2f;
+  --error-background: #ffebee;
+  --success-color: #388e3c;
+  --helper-text-color: #6c757d;
+  --focus-outline: #d68c00;
+}
 
 body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
   font-family: 'Chau Philomene One', sans-serif;
 }
 
@@ -10,68 +34,203 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #f4f4f4;
+  min-height: 100vh;
+  background: var(--background-light);
+  padding: 1rem;
 }
 
 .signup-card {
-  background: #fff;
-  padding: 20px;
+  background: var(--form-background);
+  padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
-  animation: fadeIn 1.5s;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+#signup-title {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  text-align: center;
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
 }
 
 .signup-form label {
-  margin-bottom: 5px;
-  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
 }
 
 .signup-form input {
-  margin-bottom: 15px;
-  padding: 10px;
+  width: 100%;
+  padding: 0.75rem;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--input-border);
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.25);
+}
+
+/* Style pour les champs invalides */
+.signup-form input[aria-invalid="true"] {
+  border-color: var(--error-color);
+  background-color: var(--error-background);
+}
+
+.signup-form input[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.25);
+}
+
+.helper-text {
+  font-size: 0.875rem;
+  color: var(--helper-text-color);
+  margin-top: 0.25rem;
+}
+
+.error-message {
+  color: var(--error-color);
+  background-color: var(--error-background);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
 }
 
 .animated-button {
-  background: #007bff;
+  background: var(--primary-color);
   color: white;
-  padding: 10px;
+  padding: 0.75rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.animated-button:hover {
-  background: #0056b3;
+.animated-button:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.animated-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.animated-button:focus-visible {
+  outline: 3px solid var(--focus-outline);
+  outline-offset: 3px;
+}
+
+.animated-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.login-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.login-link a:hover, 
+.login-link a:focus {
+  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
+.login-link a:focus-visible {
+  outline: 3px solid var(--focus-outline);
+  outline-offset: 3px;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .signup-card {
-    padding: 15px;
+    padding: 1.5rem;
   }
+}
 
+@media (max-width: 480px) {
+  .signup-card {
+    padding: 1.25rem;
+  }
+  
   .signup-form input {
-    padding: 8px;
+    padding: 0.625rem;
   }
-
+  
   .animated-button {
-    padding: 8px;
+    padding: 0.625rem;
+  }
+  
+  #signup-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Accessibilité supplémentaire */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Amélioration pour le mode sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-light: #121212;
+    --form-background: #1e1e1e;
+    --text-dark: #e0e0e0;
+    --input-border: #444444;
+    --helper-text-color: #a0a0a0;
+    --error-background: #391515;
+    --primary-color: #4c8dff;
+    --primary-hover: #6fa2ff;
+    --focus-outline: #ffc240;
+  }
+  
+  .signup-form input {
+    background-color: #2a2a2a;
+    color: var(--text-dark);
+  }
+  
+  .error-message {
+    background-color: var(--error-background);
   }
 }

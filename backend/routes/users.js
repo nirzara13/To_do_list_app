@@ -159,11 +159,55 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 });
 
 // Ajouter cette route à la fin du fichier users.js
-router.post('/update-user-profile', async (req, res) => {
+// router.post('/update-user-profile', async (req, res) => {
+//   try {
+//     const { userId, username, email } = req.body;
+    
+//     console.log('Tentative de mise à jour du profil', {userId, username, email});
+    
+//     // Rechercher l'utilisateur
+//     const user = await User.findByPk(userId);
+//     if (!user) {
+//       return res.status(404).json({ success: false, message: 'Utilisateur non trouvé' });
+//     }
+    
+//     // Mettre à jour l'utilisateur
+//     await user.update({ username, email });
+    
+//     // Retourner les données mises à jour
+//     res.json({
+//       success: true,
+//       message: 'Profil mis à jour avec succès',
+//       user: {
+//         id: user.id,
+//         username: user.username,
+//         email: user.email
+//       }
+//     });
+//   } catch (error) {
+//     console.error('Erreur lors de la mise à jour du profil:', error);
+//     res.status(500).json({ success: false, message: 'Erreur serveur' });
+//   }
+// });
+
+
+
+
+// Ajoutez cette route à la fin du fichier users.js
+router.post('/update-user-profile', authMiddleware, async (req, res) => {
+  // Le code que je vous ai précédemment fourni
   try {
     const { userId, username, email } = req.body;
     
     console.log('Tentative de mise à jour du profil', {userId, username, email});
+    
+    // Vérifier si l'utilisateur tente de modifier son propre profil
+    if (userId !== req.user.id) {
+      return res.status(403).json({ 
+        success: false, 
+        message: 'Non autorisé à modifier ce profil' 
+      });
+    }
     
     // Rechercher l'utilisateur
     const user = await User.findByPk(userId);
@@ -171,8 +215,28 @@ router.post('/update-user-profile', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Utilisateur non trouvé' });
     }
     
+    // Vérifier si l'email est déjà utilisé par un autre utilisateur
+    if (email && email !== user.email) {
+      const existingUser = await User.findOne({ 
+        where: { 
+          email,
+          id: { [Op.ne]: userId } 
+        } 
+      });
+      
+      if (existingUser) {
+        return res.status(400).json({ 
+          success: false, 
+          message: 'Cet email est déjà utilisé' 
+        });
+      }
+    }
+    
     // Mettre à jour l'utilisateur
-    await user.update({ username, email });
+    await user.update({ 
+      username: username || user.username, 
+      email: email || user.email 
+    });
     
     // Retourner les données mises à jour
     res.json({
@@ -189,4 +253,5 @@ router.post('/update-user-profile', async (req, res) => {
     res.status(500).json({ success: false, message: 'Erreur serveur' });
   }
 });
+
 module.exports = router;

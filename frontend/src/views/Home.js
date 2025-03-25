@@ -77,84 +77,72 @@ const Home = () => {
   // Gérer le cas de chargement
   if (loading) {
     return (
-      <div className="home-container loading">
-        <div className="spinner">Chargement...</div>
+      <div className="home-container loading" aria-live="polite" role="status">
+        <div className="spinner">Chargement des données en cours...</div>
       </div>
     );
   }
 
   return (
-    <div className="home-container">
+    <main className="home-container">
       {/* Section Hero */}
-      <section className="hero-section">
-        <h1>Bienvenue sur votre To-Do List</h1>
+      <section className="hero-section" aria-labelledby="main-heading">
+        <h1 id="main-heading">Bienvenue sur votre To-Do List</h1>
         <p>Gérez vos tâches facilement et efficacement.</p>
-        
-        {/* Section Authentification Conditionnelle */}
-        {!isAuthenticated && (
-          <div className="auth-cta">
-            <Link to="/login" className="animated-button">
-              <FaSignInAlt /> Se Connecter
-            </Link>
-            <Link to="/signup" className="animated-button">
-              <FaUserPlus /> S'Inscrire
-            </Link>
-          </div>
-        )}
       </section>
 
       {/* Sections Informative */}
-      <section className="info-section">
-        <div className="info-card" tabIndex="0">
-          <FaCheckCircle className="info-icon" />
-          <h3>Facile à Utiliser</h3>
+      <section className="info-section" aria-labelledby="features-heading">
+        <h2 id="features-heading" className="sr-only">Fonctionnalités principales</h2>
+        <article className="info-card" role="region" aria-labelledby="feature-1">
+          <FaCheckCircle className="info-icon" aria-hidden="true" />
+          <h3 id="feature-1">Facile à Utiliser</h3>
           <p>Créez et gérez vos tâches en quelques clics avec notre interface intuitive.</p>
-        </div>
-        <div className="info-card" tabIndex="0">
-          <FaTasks className="info-icon" />
-          <h3>Organisation Personnalisée</h3>
+        </article>
+        <article className="info-card" role="region" aria-labelledby="feature-2">
+          <FaTasks className="info-icon" aria-hidden="true" />
+          <h3 id="feature-2">Organisation Personnalisée</h3>
           <p>Classez vos tâches par priorité et date d'échéance.</p>
-        </div>
-        <div className="info-card" tabIndex="0">
-          <FaCheckCircle className="info-icon" />
-          <h3>Gratuit</h3>
+        </article>
+        <article className="info-card" role="region" aria-labelledby="feature-3">
+          <FaCheckCircle className="info-icon" aria-hidden="true" />
+          <h3 id="feature-3">Gratuit</h3>
           <p>Profitez de toutes nos fonctionnalités gratuitement, sans limitation.</p>
-        </div>
+        </article>
       </section>
 
       {/* Tâches en Cours - Visible uniquement pour les utilisateurs authentifiés */}
       {isAuthenticated && tasks.length > 0 && (
-        <section className="current-tasks-section">
-          <h2>Vos Tâches en Cours</h2>
-          {tasks.map((task) => (
-            <div 
-              className="task-card" 
-              key={task.id} 
-              tabIndex="0"
-              aria-label={`Tâche : ${task.title}`}
-            >
-              <h3>{task.title}</h3>
-              <p>{task.description}</p>
-              <div className="task-meta">
-                <span>Priorité : {task.priority}</span>
-                <span>Statut : {task.status}</span>
-              </div>
-              <button 
-                className="animated-button" 
-                onClick={() => handleStartTask(task.id)} 
-                tabIndex="0"
-              >
-                Voir les Détails
-              </button>
-            </div>
-          ))}
+        <section className="current-tasks-section" aria-labelledby="current-tasks-heading">
+          <h2 id="current-tasks-heading">Vos Tâches en Cours</h2>
+          <ul className="tasks-list" aria-label="Liste de vos tâches en cours">
+            {tasks.map((task) => (
+              <li className="task-card" key={task.id}>
+                <article>
+                  <h3 id={`task-title-${task.id}`}>{task.title}</h3>
+                  <p>{task.description}</p>
+                  <div className="task-meta">
+                    <span>Priorité : {task.priority}</span>
+                    <span>Statut : {task.status}</span>
+                  </div>
+                </article>
+                <button 
+                  className="animated-button" 
+                  onClick={() => handleStartTask(task.id)} 
+                  aria-label={`Voir les détails de la tâche : ${task.title}`}
+                >
+                  Voir les Détails
+                </button>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
 
       {/* Message conditionnel pour les utilisateurs non connectés */}
       {!isAuthenticated && (
-        <section className="call-to-action">
-          <h2>Commencez à organiser votre travail</h2>
+        <section className="call-to-action" aria-labelledby="cta-heading">
+          <h2 id="cta-heading">Commencez à organiser votre travail</h2>
           <p>
             Connectez-vous ou inscrivez-vous pour accéder à votre tableau de bord personnalisé 
             et commencer à gérer vos tâches efficacement.
@@ -164,15 +152,15 @@ const Home = () => {
 
       {/* Message quand aucune tâche n'est disponible */}
       {isAuthenticated && tasks.length === 0 && (
-        <section className="no-tasks">
-          <h2>Pas de tâches pour le moment</h2>
+        <section className="no-tasks" aria-labelledby="no-tasks-heading">
+          <h2 id="no-tasks-heading">Pas de tâches pour le moment</h2>
           <p>Commencez par créer votre première tâche !</p>
-          <Link to="/create-task" className="animated-button">
+          <Link to="/create-task" className="animated-button" aria-label="Créer une nouvelle tâche">
             Créer une Tâche
           </Link>
         </section>
       )}
-    </div>
+    </main>
   );
 };
 

@@ -1,3 +1,7 @@
+// 
+
+
+
 const webpack = require('webpack');
 
 module.exports = {
@@ -13,4 +17,7 @@ module.exports = {
       Buffer: ['buffer', 'Buffer'],
     }),
   ],
+  devServer: {
+    timeout: 120000, // 2 minutes
+  },
 };

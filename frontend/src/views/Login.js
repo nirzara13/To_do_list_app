@@ -1,3 +1,6 @@
+// 
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -6,14 +9,41 @@ import '../styles/Login.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  // Validation du formulaire
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Validation email
+    if (!email.trim()) {
+      newErrors.email = 'L\'email est requis';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Veuillez entrer un email valide';
+    }
+
+    // Validation mot de passe
+    if (!password.trim()) {
+      newErrors.password = 'Le mot de passe est requis';
+    } else if (password.length < 8) {
+      newErrors.password = 'Le mot de passe doit contenir au moins 8 caractères';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log("Tentative de connexion avec:", email);
+
+    // Validation avant soumission
+    if (!validateForm()) {
+      return;
+    }
 
     try {
-      const response = await fetch('http://localhost:5000/api/user/login', {
+      const response = await fetch('http://localhost:5000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,40 +52,33 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log("Réponse du serveur:", data);
 
       if (response.ok) {
-        console.log("Connexion réussie, stockage du token");
-        // Stocker le token et les infos utilisateur
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        
+
         Swal.fire({
           icon: 'success',
           title: 'Connexion réussie!',
           text: 'Vous allez être redirigé vers votre tableau de bord',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
+          accessibilityAttributes: {
+            role: 'alert'
+          }
         });
-        
-        // Double approche de redirection pour assurer qu'elle fonctionne
-        console.log("Tentative de redirection vers /dashboard");
+
         setTimeout(() => {
           navigate('/dashboard');
-          
-          // Fallback au cas où navigate échoue
-          setTimeout(() => {
-            if (window.location.pathname !== '/dashboard') {
-              console.log("Redirection avec window.location");
-              window.location.href = '/dashboard';
-            }
-          }, 300);
         }, 1500);
       } else {
         Swal.fire({
           icon: 'error',
           title: 'Erreur de connexion',
-          text: data.error || 'Email ou mot de passe incorrect'
+          text: data.error || 'Email ou mot de passe incorrect',
+          accessibilityAttributes: {
+            role: 'alert'
+          }
         });
       }
     } catch (error) {
@@ -63,16 +86,23 @@ const Login = () => {
       Swal.fire({
         icon: 'error',
         title: 'Erreur serveur',
-        text: 'Impossible de se connecter au serveur'
+        text: 'Impossible de se connecter au serveur',
+        accessibilityAttributes: {
+          role: 'alert'
+        }
       });
     }
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container" role="main">
       <div className="login-card">
-        <h1>Connexion</h1>
-        <form onSubmit={handleLogin} className="login-form">
+        <h1 id="login-title">Connexion</h1>
+        <form 
+          onSubmit={handleLogin} 
+          className="login-form" 
+          aria-labelledby="login-title"
+        >
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -82,7 +112,19 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               aria-required="true"
+              aria-invalid={errors.email ? "true" : "false"}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              autoComplete="email"
             />
+            {errors.email && (
+              <span 
+                id="email-error" 
+                className="error-message" 
+                role="alert"
+              >
+                {errors.email}
+              </span>
+            )}
           </div>
 
           <div className="form-group">
@@ -94,10 +136,28 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               aria-required="true"
+              aria-invalid={errors.password ? "true" : "false"}
+              aria-describedby={errors.password ? "password-error" : undefined}
+              autoComplete="current-password"
             />
+            {errors.password && (
+              <span 
+                id="password-error" 
+                className="error-message" 
+                role="alert"
+              >
+                {errors.password}
+              </span>
+            )}
           </div>
 
-          <button type="submit" className="animated-button">Se connecter</button>
+          <button 
+            type="submit" 
+            className="animated-button"
+            aria-label="Se connecter"
+          >
+            Se connecter
+          </button>
         </form>
       </div>
     </div>

@@ -1,5 +1,4 @@
 /* Contact.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap');
 
 body {
@@ -14,7 +13,10 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation: fadeIn 1.5s, slideIn 1s ease-out;
-  color: white; /* Texte en blanc */
+  color: #f0f0f0; /* Légèrement plus clair pour améliorer le contraste */
+  position: relative; /* Ajout pour gérer le positionnement */
+  z-index: 10; /* S'assurer qu'il est au-dessus du footer */
+  margin-bottom: 100px; /* Espace supplémentaire avant le footer */
 }
 
 .contact-container h1 {
@@ -39,8 +41,12 @@ body {
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #4a4a4a; /* Bordure plus visible */
   font-family: 'Chau Philomene One', sans-serif;
+  background-color: #f0f0f0; /* Fond légèrement gris pour contraste */
+  color: #081f53; /* Texte en bleu foncé */
+  width: 100%; /* Largeur complète */
+  box-sizing: border-box; /* Inclure padding et border dans la largeur */
 }
 
 .contact-container textarea {
@@ -49,18 +55,79 @@ body {
 }
 
 .animated-button {
-  background: #ffcc00; /* Jaune orange */
+  background: #ffcc00; /* Jaune orange conservé */
   color: #081f53; /* Bleu foncé */
   padding: 10px;
-  border: none;
+  border: 2px solid #081f53; /* Ajout d'une bordure pour plus de contraste */
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
+  margin-bottom: 20px; /* Espace supplémentaire en bas */
+  width: 100%; /* Largeur complète */
 }
 
 .animated-button:hover {
   background: #000000; /* Noir */
   color: #ffffff; /* Blanc */
+}
+
+.animated-button:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.animated-button:disabled:hover {
+  background: #cccccc;
+  color: #666666;
+}
+
+/* Styles pour les messages d'erreur */
+.error-message {
+  color: #ff6b6b; /* Rouge plus visible mais harmonieux */
+  font-size: 0.8em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s;
+}
+
+/* Amélioration du contraste pour les champs invalides */
+.contact-container input:invalid,
+.contact-container textarea:invalid {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+/* États de focus améliorés pour l'accessibilité */
+.contact-container input:focus,
+.contact-container textarea:focus {
+  outline: 2px solid #ffcc00;
+  outline-offset: 2px;
+  border-color: #ffcc00;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.7);
+}
+
+.contact-container h1 {
+  color: white; /* Titre en blanc */
+  text-align: center;
+}
+
+.contact-container label {
+  color: white; /* Labels en blanc */
+  font-weight: bold;
+}
+
+
+.contact-container label {
+  color: white !important; /* Force la couleur en blanc */
+  font-weight: bold;
+  margin-bottom: 5px; /* Espace entre le label et l'input */
+}
+
+.contact-container .form-group label {
+  color: white !important;
+  display: block; /* Pour s'assurer que le label prenne toute la largeur */
 }
 
 /* Animations */
@@ -77,15 +144,51 @@ body {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .contact-container {
+    width: 90%; /* Largeur adaptative */
+    margin: 0 auto;
     padding: 15px;
+    margin-bottom: 50px; /* Réduire l'espace en mobile */
+  }
+
+  .contact-container h1 {
+    font-size: 1.5em; /* Taille de titre réduite */
   }
 
   .contact-container input,
   .contact-container textarea {
     padding: 8px;
+    font-size: 0.9em; /* Taille de police réduite */
   }
 
   .animated-button {
     padding: 8px;
+    font-size: 0.9em; /* Taille de police réduite */
+  }
+
+  .error-message {
+    font-size: 0.7em; /* Taille de police plus petite */
+  }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+  .contact-container {
+    width: 95%; /* Presque pleine largeur */
+    padding: 10px;
+  }
+
+  .contact-container h1 {
+    font-size: 1.3em;
+  }
+
+  .contact-container input,
+  .contact-container textarea {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+
+  .animated-button {
+    padding: 6px;
+    font-size: 0.8em;
   }
 }
