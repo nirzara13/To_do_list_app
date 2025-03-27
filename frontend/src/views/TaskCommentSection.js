@@ -95,8 +95,8 @@ const TaskCommentSection = ({ taskId }) => {
               <div className="card-body">
                 <p className="card-text">{comment.content}</p>
                 <footer className="blockquote-footer">
-                  {comment.user.username} 
-                  - {new Date(comment.created_at).toLocaleString()}
+                  {comment.user && comment.user.username ? comment.user.username : 'Utilisateur'} 
+                  - {new Date(comment.created_at || comment.createdAt).toLocaleString()}
                 </footer>
               </div>
             </div>
