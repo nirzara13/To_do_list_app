@@ -130,8 +130,9 @@ const ListsPage = () => {
   };
 
   return (
-    <div className="container mt-4">
+      <div className="container mt-4" style={{ paddingTop: '120px' }}>
       <h1>Gestion des listes</h1>
+  
       
       <div className="d-flex justify-content-between mb-3">
         <button 

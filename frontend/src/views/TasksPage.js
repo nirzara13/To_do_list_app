@@ -3,20 +3,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import api from '../api';
@@ -494,9 +480,11 @@ const TasksPage = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h1>Gestionnaire de tâches</h1>
-      
+    
+
+    <div className="container mt-4" style={{ paddingTop: '120px' }}>
+  <h1>Gestionnaire de tâches</h1>
+  
       <div className="d-flex justify-content-between mb-3">
         <button 
           onClick={() => {

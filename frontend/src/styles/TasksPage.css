@@ -115,6 +115,11 @@
   padding-top: calc(var(--header-height) + 2rem); /* Add header height to top padding */
 }
 
+.page-content .spacer {
+  height: 120px; /* Ajustez selon vos besoins */
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .tasks-page-container {
     padding: 1rem;
