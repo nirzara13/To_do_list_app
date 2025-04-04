@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Chau+Philomene+One:wght@400&display=swap');
+
+:root {
+  /* Variables de couleurs avec un bon contraste */
+  --bg-primary: #f5f5f5;
+  --text-primary: #081f53;
+  --heading-color: #4a4ae8; /* Légèrement ajusté pour améliorer le contraste */
+  --link-color: #081f53;
+  --link-hover: #4a4ae8;
+}
+
+.legal-page {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Chau Philomène One', sans-serif;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  line-height: 1.6;
+}
+
+h1, h2 {
+  color: var(--heading-color);
+  font-weight: bold;
+  /* Amélioration de l'accessibilité des titres */
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--heading-color);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem; /* Taille de police accessible */
+}
+
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+}
+
+p, ul {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+/* Amélioration de l'accessibilité des liens */
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--link-hover);
+  outline: 2px solid var(--link-hover);
+}
+
+.legal-page-container {
+  padding-top: 120px; /* Ajustez selon la hauteur réelle de votre header */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-page {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #4a4ae8;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #4a4ae8;
+}
+
+/* Animation de fondu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Accessibilité du focus */
+*:focus {
+  outline: 3px solid var(--heading-color);
+  outline-offset: 2px;
+}
+
+/* Responsive et tailles de police adaptatives */
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Impression */
+@media print {
+  .legal-page {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+}

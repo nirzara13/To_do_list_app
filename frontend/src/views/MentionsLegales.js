@@ -1,29 +1,66 @@
 import React from 'react';
-import '../styles/Legal.css'; // Assurez-vous de créer ce fichier CSS pour les styles communs
+import { Helmet } from 'react-helmet';
+import '../styles/LegalPages.css';
 
 const MentionsLegales = () => {
   return (
-    <div className="legal-page">
-      <h1>Mentions Légales</h1>
-      <p>Conformément aux dispositions des articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., nous portons à la connaissance des utilisateurs et visiteurs du site : <strong>www.sondageplus.com</strong> les informations suivantes :</p>
-      
-      <h2>1. Informations légales :</h2>
-      <p>
-        Statut du propriétaire : <br />
-        Propriétaire du site : MonSite <br />
-        Responsable de la publication : M. Dupont - contact@monsite.com <br />
-        Conception et développement : MonSite Team <br />
-        Hébergeur : OVH - 2 rue Kellermann 59100 Roubaix
-      </p>
-      
-      <h2>2. Conditions d'utilisation :</h2>
-      <p>L’utilisation du site <strong>www.monsite.com</strong> implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites.</p>
-      
-      <h2>3. Services fournis :</h2>
-      <p>Le site <strong>www.monsite.com</strong> a pour objet de fournir une information concernant l’ensemble des activités de la société.</p>
-      
-      <h2>4. Propriété intellectuelle :</h2>
-      <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : MonSite.</p>
+    <div 
+      className="legal-page" 
+      role="main" 
+      aria-labelledby="page-title"
+      lang="fr"
+    >
+      <Helmet>
+        <title>Mentions Légales - Manage Task</title>
+        <meta 
+          name="description" 
+          content="Mentions légales de l'application Manage Task" 
+        />
+      </Helmet>
+
+<br />
+<br />
+      <h1 
+        id="page-title" 
+        tabIndex="0"
+      >
+        Mentions Légales
+      </h1>
+
+      <main id="main-content" tabIndex="-1">
+        <section aria-labelledby="editeur-section">
+          <h2 id="editeur-section">Informations Éditeur</h2>
+          <p><strong>Nom de l'application :</strong> Manage Task</p>
+          <p><strong>Nature :</strong> Application personnelle de gestion de tâches</p>
+          <p><strong>Développeur :</strong> Nirzara BARUA</p>
+          <p><strong>Contexte :</strong> Projet académique de développement web</p>
+        </section>
+
+        <section aria-labelledby="technologie-section">
+          <h2 id="technologie-section">Technologies Utilisées</h2>
+          <ul>
+            <li>Frontend : React.js</li>
+            <li>Backend : Node.js avec Express</li>
+            <li>Base de données : MySQL (Laragon)</li>
+            <li>Versionnement : GitHub</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="hebergement-section">
+          <h2 id="hebergement-section">Hébergement</h2>
+          <p>Projet développé localement dans un cadre personnel et académique. Aucun hébergement commercial n'est utilisé.</p>
+        </section>
+
+        <section aria-labelledby="responsabilite-section">
+          <h2 id="responsabilite-section">Responsabilité</h2>
+          <p>L'application est fournie "en l'état", sans garantie de fonctionnement parfait. Développée à des fins personnelles et éducatives.</p>
+        </section>
+
+        <section aria-labelledby="contact-section">
+          <h2 id="contact-section">Contact</h2>
+          <p><strong>Email :</strong> manage.task@gmail.com</p>
+        </section>
+      </main>
     </div>
   );
 };
