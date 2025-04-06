@@ -1,28 +1,3 @@
-// const sequelize = require('../config/database'); // Assurez-vous que le chemin est correct
-// const Utilisateur = require('./Utilisateur');
-// const Sondage = require('./Sondage');
-// const Question = require('./Question');
-// const Reponse = require('./Reponse');
-
-// // Définir les relations entre les modèles
-// Sondage.hasMany(Question, { foreignKey: 'sondage_id' });
-// Question.belongsTo(Sondage, { foreignKey: 'sondage_id' });
-
-// Question.hasMany(Reponse, { foreignKey: 'question_id' });
-// Reponse.belongsTo(Question, { foreignKey: 'question_id' });
-
-// Utilisateur.hasMany(Reponse, { foreignKey: 'utilisateur_id' });
-// Reponse.belongsTo(Utilisateur, { foreignKey: 'utilisateur_id' });
-
-// sequelize.sync(); // Synchroniser les modèles avec la base de données
-
-// module.exports = {
-//   Utilisateur,
-//   Sondage,
-//   Question,
-//   Reponse
-// };
-
 
 const User = require('./User');
 const Task = require('./Task');

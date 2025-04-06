@@ -6,7 +6,11 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 // Clé secrète pour JWT - idéalement à stocker dans les variables d'environnement
-const JWT_SECRET = process.env.JWT_SECRET || 'votre_secret_temporaire';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  console.error('ATTENTION: JWT_SECRET n\'est pas défini. Utilisez un .env file pour définir cette variable.');
+
+}
 
 const authController = {
   // Inscription

@@ -55,6 +55,19 @@ body {
   background: #0056b3;
 }
 
+.forgot-password-button {
+  background: none;
+  border: none;
+  color: #1a73e8;
+  margin-top: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forgot-password-button:hover {
+  color: #174ea6;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
